@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "node bin/dev-server.js",
-    "build": "node node_modules/.bin/webpack --config bin/build.js",
+    "build": "webpack --config bin/build.js",
     "postinstall": "npm run build",
     "start": "node index"
   },
