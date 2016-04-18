@@ -1,0 +1,7 @@
+{
+  "name": "scp-email",
+  "description": "scp-email",
+  "scripts": {
+    "postdeploy": "npm run build"
+  },
+}
