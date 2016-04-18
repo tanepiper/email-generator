@@ -9,6 +9,10 @@
     "postinstall": "npm run build",
     "start": "node index"
   },
+  "engines":{
+    "node": "4.3.x",
+    "npm": "3.x.x"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
