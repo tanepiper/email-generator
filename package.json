@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "node bin/dev-server.js",
-    "build": "webpack --config bin/build.js"
+    "build": "webpack --config bin/build.js",
+    "postinstall": "npm run build"
   },
   "author": "",
   "license": "ISC",
