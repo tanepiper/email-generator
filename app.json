@@ -1,9 +1,4 @@
 {
   "name": "scp-email",
-  "description": "scp-email",
-  "scripts": {
-    "dokku": {
-      "predeploy": "npm install"
-    }
-  }
+  "description": "scp-email"
 }
