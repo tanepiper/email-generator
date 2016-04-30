@@ -5,7 +5,6 @@ import CopyToClipboard from 'react-copy-to-clipboard';
 
 function splitFile(data) {
   return data.split('@article').filter(f => f).map(entry => {
-    console.log(entry)
     return entry.split('\n');
   });
 }
@@ -28,10 +27,7 @@ function getContentForKey(record, key) {
 
 function generateHTML(record) {
   const htmlOutput = `
-    <div>
-      <h2>${getContentForKey(record, 'title')[0]}</h2>
-    </div>
-    `;
+<p><font size="2"><a href="${getContentForKey(record, 'doi')}">${getContentForKey(record, 'title')[0]}</a> (${getContentForKey(record, 'author')[0]})</font></p>`;
     return htmlOutput;
 }
 
@@ -39,7 +35,7 @@ export default class App extends Component {
 
   state = {
     records: []
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -65,18 +61,15 @@ export default class App extends Component {
 
   renderPanels() {
     return this.state.records.map((record, index) => {
-
-      const innerHtml = generateHTML(record);
-      return (
-        <Panel key={index} header={getContentForKey(record, 'title')[0]}>
-          <Input type="textarea" defaultValue={innerHtml} />
-          <CopyToClipboard text={innerHtml}><button>Copy to clipboard</button></CopyToClipboard>
-        </Panel>
-      );
-    });
+      return generateHTML(record);
+    }).join('\n');
   }
 
   render() {
+
+    const content = this.renderPanels();
+    console.log(content);
+
     return (
       <Grid>
         <Navbar staticTop inverse>
@@ -94,7 +87,10 @@ export default class App extends Component {
           </Col>
         </Row>
         <Row>
-          {this.renderPanels()}
+          <Panel>
+            <Input type="textarea" value={content} />
+            <CopyToClipboard text={content}><button>Copy to clipboard</button></CopyToClipboard>
+          </Panel>
         </Row>
       </Grid>
     );
